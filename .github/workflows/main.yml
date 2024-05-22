@@ -1,0 +1,33 @@
+name: Notify Telegram on test results
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  notify_telegram_on_success:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram notification on success
+        uses: repo-automation-community/gha-telegram-bot@v1
+        if: success()
+        with:
+          token: ${{ secrets.7012856962:AAED_de2To4vHuYLgQca6AL4AZLGOq-KMBs }}
+          to: ${{ secrets.991068884 }}
+          message: "Все ок!"
+
+  notify_telegram_on_failure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram notification on failure
+        uses: repo-automation-community/gha-telegram-bot@v1
+        if: failure()
+        with:
+          token: ${{ secrets.7012856962:AAED_de2To4vHuYLgQca6AL4AZLGOq-KMBs }}
+          to: ${{ secrets.991068884 }}
+          message: >-
+            Тесты не пройдены!
+
+            *Не пройденные тесты:*
+
+            {{ join(failure().tests, '\n') }}
