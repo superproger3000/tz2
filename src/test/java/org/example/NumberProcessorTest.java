@@ -12,7 +12,7 @@ class NumberProcessorTest {
     @Test
     void testMin() {
         int[] numbers = {1, 3, 5, 7, 9};
-        assertEquals(2, NumberProcessor.min(numbers));
+        assertEquals(1, NumberProcessor.min(numbers));
     }
 
     @Test
