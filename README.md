@@ -9,4 +9,7 @@
 * PlotMakingForMult.java строит график зависимости времени выполнения поиска произведения от количества чисел в файле
 * chart.png визуализация графика зависимости
 
+[![GitHub Action](https://github.com/superproger3000/tz2/actions/workflows/maven.yml/badge.svg)](https://github.com/superproger3000/tz2/actions/workflows/maven.yml)
+
+
 Кузнецова Ульяна ББИ238
