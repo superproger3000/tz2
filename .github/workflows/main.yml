@@ -5,9 +5,21 @@ on:
   pull_request:
 
 jobs:
-  notify_telegram_on_success:
+  test-and-notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Run tests
+        run: mvn test
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: "*/target/surefire-reports/*.xml"
       - name: Send Telegram notification on success
         uses: repo-automation-community/gha-telegram-bot@v1
         if: success()
@@ -15,10 +27,6 @@ jobs:
           token: ${{ secrets.7012856962:AAED_de2To4vHuYLgQca6AL4AZLGOq-KMBs }}
           to: ${{ secrets.991068884 }}
           message: "Все ок!"
-
-  notify_telegram_on_failure:
-    runs-on: ubuntu-latest
-    steps:
       - name: Send Telegram notification on failure
         uses: repo-automation-community/gha-telegram-bot@v1
         if: failure()
